@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/martijnxd/testwebservice/models"
+)
 
 func main() {
-	fmt.Println("Test from module")
+	u := models.User{
+		ID:        2,
+		FirstName: "Martijn",
+		LastName:  "Last name",
+	}
+	fmt.Println(u)
 }
