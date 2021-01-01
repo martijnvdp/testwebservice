@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"net/http"	"regexp"
+	"net/http"
+	"regexp"
 )
 
-
-type userController struct{
+type userController struct {
 	userIDPattern *regexp.Regexp
 }
 
