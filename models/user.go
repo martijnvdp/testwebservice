@@ -21,7 +21,7 @@ func GetUsers() []*User {
 }
 
 func AddUser(u User) (User, error) {
-	if u.ID != 0 {
+	if u.ID == 0 {
 		return User{}, errors.New("New user must not include id")
 	}
 	u.ID = nextID
