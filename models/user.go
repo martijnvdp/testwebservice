@@ -40,8 +40,8 @@ func GetuserByID(id int) (User, error) {
 	return User{}, fmt.Errorf("User with ID '%v' not found", id)
 }
 
-// RemoveuserByID get user by id
-func RemoveuserByID(id int) error {
+// RemoveUserByID get user by id
+func RemoveUserByID(id int) error {
 	for i, u := range users {
 		if u.ID == id {
 			users = append(users[:i], users[i+1:]...)
