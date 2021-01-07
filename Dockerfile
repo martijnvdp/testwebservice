@@ -1,29 +1,12 @@
-FROM golang:alpine AS builder
-RUN apk update && apk add --no-cache git
-ENV USER=appuser
-ENV UID=10001 
+FROM golang:1.14.3-alpine AS build-env
 
-RUN adduser \    
-    --disabled-password \    
-    --gecos "" \    
-    --home "/nonexistent" \    
-    --shell "/sbin/nologin" \    
-    --no-create-home \    
-    --uid "${UID}" \    
-    "${USER}"
-WORKDIR $GOPATH/src/testwebservice
+WORKDIR /src
+ENV CGO_ENABLED=0
 COPY . .
+RUN GOOS=linux go build -o /out/testwebservice .
 
-RUN go get -d -v
+FROM alpine:latest
 
-RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /go/bin/testwebservice
-
-FROM scratch
-
-COPY --from=builder /etc/passwd /etc/passwd
-COPY --from=builder /etc/group /etc/group
-
-COPY --from=builder /go/bin/testwebservice /
-USER appuser:appuser
+COPY --from=build-env /out/testwebservice /
 ENTRYPOINT ["/testwebservice"]
 EXPOSE 3000
