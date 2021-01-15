@@ -28,5 +28,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello %s\n", path)
 	}
 	fmt.Fprintf(w, "<br><br><a href=\"users\">List users</a>")
+	fmt.Fprintf(w, "<br>example post body to users:")
+	fmt.Fprintf(w, "<br>{\"ID\":1,\"FirstName\":\"firstNAME\",\"LastName\":\"lastNAME\"}")
 	fmt.Fprintf(w, "<br><br>Test web app with GO GO")
 }
