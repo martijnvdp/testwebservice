@@ -11,8 +11,8 @@ func TestHandler(t *testing.T) {
 	cases := []struct {
 		in, out string
 	}{
-		{"martijn@golang.org", "Hello gopher martijn"},
-		{"something", "hello something"},
+		{"martijn@testing.com", "Hello tester martijn@testing.com\n"},
+		{"something", "Hello something\n"},
 	}
 	for _, c := range cases {
 		req, err := http.NewRequest(
