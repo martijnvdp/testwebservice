@@ -24,9 +24,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path[1:]
 	if strings.HasSuffix(path, "@testing.com") {
 		fmt.Fprintf(w, "Hello tester %s\n", strings.TrimSuffix(path, "@gtesting.com"))
-		return
+	} else {
+		fmt.Fprintf(w, "Hello %s\n", path)
 	}
-	fmt.Fprintf(w, "Hello %s\n<br><br>", path)
-	fmt.Fprintf(w, "<a href=\"users\">List users</a>")
+	fmt.Fprintf(w, "<br><br><a href=\"users\">List users</a>")
 	fmt.Fprintf(w, "<br><br>Test web app with GO GO")
 }
