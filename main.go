@@ -13,7 +13,6 @@ func main() {
 	controllers.RegisterControllers()
 	http.HandleFunc("/", handler)
 	err := http.ListenAndServe(":8080", nil)
-	err = http.ListenAndServe(":3000", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,6 +28,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprintf(w, "<br><br><a href=\"users\">List users</a>")
 	fmt.Fprintf(w, "<br>example post body to users:")
-	fmt.Fprintf(w, "<br>{\"ID\":1,\"FirstName\":\"firstNAME\",\"LastName\":\"lastNAME\"}")
+	fmt.Fprintf(w, "<br><a href=\"addusers\">Add user</a>")
 	fmt.Fprintf(w, "<br><br>Test web app with GO GO")
 }

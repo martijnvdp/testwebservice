@@ -12,6 +12,8 @@ func RegisterControllers() {
 
 	http.Handle("/users", *uc)
 	http.Handle("/users/", *uc)
+	http.HandleFunc("/adduser", AddUserGui)
+	http.HandleFunc("/addusers", AddUserGui)
 }
 
 func encodeResponseAsJSON(data interface{}, w io.Writer) {

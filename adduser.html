@@ -1,0 +1,14 @@
+{{if .Success}}
+    <h1>user added</h1>
+{{else}}
+    <h1>Add user</h1>
+    <form method="POST">
+        <label>ID:</label><br />
+        <input type="text" name="ID"><br />
+        <label>FirstName:</label><br />
+        <input type="text" name="FirstName"><br />
+        <label>LastName:</label><br />
+        <textarea name="LastName"></textarea><br />
+        <input type="submit">
+    </form>
+{{end}}

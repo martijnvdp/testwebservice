@@ -2,9 +2,12 @@ package controllers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"os"
 	"regexp"
 	"strconv"
+	"text/template"
 
 	"github.com/martijnxd/testwebservice/models"
 )
@@ -119,4 +122,31 @@ func newUserController() *userController {
 	return &userController{
 		userIDPattern: regexp.MustCompile(`^/users/(\d+)/?`),
 	}
+}
+
+//AddUserGui add uer gui
+func AddUserGui(w http.ResponseWriter, r *http.Request) {
+	var tmpl *template.Template
+	if _, err := os.Stat("adduser.html"); err == nil {
+		tmpl = template.Must(template.ParseFiles("adduser.html"))
+	} else {
+		log.Fatal(err)
+	}
+
+	if r.Method != http.MethodPost {
+		tmpl.Execute(w, nil)
+		return
+	}
+	i, err := strconv.Atoi(r.FormValue("ID"))
+	if err != nil {
+	}
+	details := models.User{
+		ID:        i,
+		FirstName: r.FormValue("FirstName"),
+		LastName:  r.FormValue("LastName"),
+	}
+
+	models.AddUser(details)
+	tmpl.Execute(w, struct{ Success bool }{true})
+
 }
