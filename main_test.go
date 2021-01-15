@@ -51,7 +51,7 @@ func BenchmarkHandler(b *testing.B) {
 		if rec.Code != http.StatusOK {
 			b.Errorf("expected status 200;got %d", rec.Code)
 		}
-		if !strings.Contains(rec.Body.String(), "gopher martijn") {
+		if !strings.Contains(rec.Body.String(), "tester martijn") {
 			b.Errorf("unexpected body in respose: %q", rec.Body.String())
 		}
 	}
